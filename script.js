@@ -349,6 +349,11 @@ function showPopup({ title = 'Informasi', message = '', confirmText = 'OK', canc
   const confirmBtn = popup.querySelector('#lgv-popup-confirm');
   const cancelBtn = popup.querySelector('#lgv-popup-cancel');
 
+  popup.classList.remove('lgv-popup--image');
+  if (title === 'Bukti Transfer' || String(message).includes('lgv-proof-image-wrap')) {
+    popup.classList.add('lgv-popup--image');
+  }
+
   titleEl.textContent = title;
   messageEl.innerHTML = message;
   confirmBtn.textContent = confirmText;
@@ -2022,7 +2027,7 @@ async function renderAdminReservationTable() {
       showPopup({
         title: 'Bukti Transfer',
         message: `<div class="lgv-proof-image-wrap"><img src="${imageUrl}" alt="Bukti transfer" /></div>`,
-        confirmText: 'Tutup',
+        confirmText: '',
         showCancel: false
       });
     });
